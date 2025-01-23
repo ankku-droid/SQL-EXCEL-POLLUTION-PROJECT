@@ -333,13 +333,21 @@ SELECT
 
 ## Findings
 
-- **Demographic Patterns**: The dataset reveals that the majority of lung cancer cases are concentrated in individuals aged 50 and above.
-A higher incidence is observed among male patients compared to female patients.
-- **Smoking as a Key Risk Factor**: Over 70% of diagnosed patients have a history of smoking, strongly correlating with the presence of lung cancer.
-- **Symptom Analysis**:The most reported symptoms among diagnosed cases are coughing, chest pain, and shortness of breath.
-Specific combinations of symptoms have a higher predictive value for lung cancer diagnosis.
-- **Lifestyle and Occupational Risk Factors**: Data suggests a potential link between exposure to pollutants and lung cancer, especially in patients reporting occupational hazards.
-- **Data Quality Insights**: Several records required normalization to ensure consistency, including converting binary codes (1/2) into descriptive labels.
+**Air Quality Categories:** The dataset reveals that the majority of areas fall under the "Moderate" air quality category, with relatively fewer areas classified as "Good."
+
+**Industrial Proximity Impact:** Regions closer to industrial zones (≤10 km) exhibit significantly higher levels of pollutants such as PM2.5, PM10, and SO₂, indicating industrial emissions as a key contributor to poor air quality.
+
+**Population Density and Pollution:** High population density areas (>500) show elevated NO₂ and CO levels, likely due to urban congestion, vehicular emissions, and limited green spaces.
+
+**Humidity and Particulate Matter:** High humidity levels (>70%) are associated with increased PM2.5 and PM10 concentrations, as moisture in the air traps pollutants closer to the surface.
+
+**Exceeding Safe Thresholds:** Pollutants such as PM2.5 and NO₂ frequently exceed safe limits in industrial and densely populated areas, posing significant health risks.
+
+**Good Air Quality Zones:** Areas with "Good" air quality are generally located farther from industrial zones and have lower population densities, highlighting the importance of distance from pollution sources.
+
+**Combined Pollutant Effects:** PM2.5 and PM10 often exceed thresholds together, emphasizing their combined impact on air quality and potential health hazards.
+
+**Data Quality Insights:** The dataset required cleaning, including the removal of null values and duplicates, ensuring consistency and accuracy for analysis.
 
 ## Reports
 
