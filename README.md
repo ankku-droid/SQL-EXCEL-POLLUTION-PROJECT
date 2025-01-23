@@ -64,10 +64,13 @@ AIR_QUALITY IS NULL ;
 
 
 ### 2. Data Exploration
-```sql
-SELECT COUNT(*) as total_case FROM lung_cancer;
+**How many Data we have?**
 
-SELECT COUNT(DISTINCT age) as total_unique_age FROM lung_cancer;
+```sql
+ SELECT COUNT(*) AS total_record FROM POLLUTION_DATA;```
+
+
+sql SELECT COUNT(DISTINCT age) as total_unique_age FROM lung_cancer;
 
 SELECT 
     MAX(CASE WHEN smoking_status = 'Yes' THEN age ELSE NULL END) AS oldest_smoker,
