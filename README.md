@@ -333,21 +333,21 @@ SELECT
 
 ## Findings
 
-**Air Quality Categories:** The dataset reveals that the majority of areas fall under the "Moderate" air quality category, with relatively fewer areas classified as "Good."
+- **Air Quality Categories:** The dataset reveals that the majority of areas fall under the "Moderate" air quality category, with relatively fewer areas classified as "Good."
 
-**Industrial Proximity Impact:** Regions closer to industrial zones (≤10 km) exhibit significantly higher levels of pollutants such as PM2.5, PM10, and SO₂, indicating industrial emissions as a key contributor to poor air quality.
+- **Industrial Proximity Impact:** Regions closer to industrial zones (≤10 km) exhibit significantly higher levels of pollutants such as PM2.5, PM10, and SO₂, indicating industrial emissions as a key contributor to poor air quality.
 
-**Population Density and Pollution:** High population density areas (>500) show elevated NO₂ and CO levels, likely due to urban congestion, vehicular emissions, and limited green spaces.
+- **Population Density and Pollution:** High population density areas (>500) show elevated NO₂ and CO levels, likely due to urban congestion, vehicular emissions, and limited green spaces.
 
-**Humidity and Particulate Matter:** High humidity levels (>70%) are associated with increased PM2.5 and PM10 concentrations, as moisture in the air traps pollutants closer to the surface.
+- **Humidity and Particulate Matter:** High humidity levels (>70%) are associated with increased PM2.5 and PM10 concentrations, as moisture in the air traps pollutants closer to the surface.
 
-**Exceeding Safe Thresholds:** Pollutants such as PM2.5 and NO₂ frequently exceed safe limits in industrial and densely populated areas, posing significant health risks.
+- **Exceeding Safe Thresholds:** Pollutants such as PM2.5 and NO₂ frequently exceed safe limits in industrial and densely populated areas, posing significant health risks.
 
-**Good Air Quality Zones:** Areas with "Good" air quality are generally located farther from industrial zones and have lower population densities, highlighting the importance of distance from pollution sources.
+- **Good Air Quality Zones:** Areas with "Good" air quality are generally located farther from industrial zones and have lower population densities, highlighting the importance of distance from pollution sources.
 
-**Combined Pollutant Effects:** PM2.5 and PM10 often exceed thresholds together, emphasizing their combined impact on air quality and potential health hazards.
+- **Combined Pollutant Effects:** PM2.5 and PM10 often exceed thresholds together, emphasizing their combined impact on air quality and potential health hazards.
 
-**Data Quality Insights:** The dataset required cleaning, including the removal of null values and duplicates, ensuring consistency and accuracy for analysis.
+- **Data Quality Insights:** The dataset required cleaning, including the removal of null values and duplicates, ensuring consistency and accuracy for analysis.
 
 ## Reports
 
