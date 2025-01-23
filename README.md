@@ -42,7 +42,7 @@ CREATE TABLE pollution_data (
 
 ### 2. Data Cleaning
 
--**Data Cleaning in Excel**
+### **Data Cleaning in Excel**
 
 -**Generated a Primary Key Column:**
 -Created a new column named RecordID to serve as the primary key, as the dataset originally lacked a primary key.
