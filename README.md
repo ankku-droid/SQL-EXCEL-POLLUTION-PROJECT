@@ -42,18 +42,18 @@ CREATE TABLE pollution_data (
 
 ### 2. Data Cleaning
 
-- **Data Cleaning in Excel**
+-**Data Cleaning in Excel**
 
-- **Generated a Primary Key Column:**
+-**Generated a Primary Key Column:**
 -Created a new column named RecordID to serve as the primary key, as the dataset originally lacked a primary key.
 
-- **Removed Unnecessary Rows:**
+-**Removed Unnecessary Rows:**
 -Deleted 3 rows that were deemed unnecessary.
 
-- **Checked for Duplicates:**
+-**Checked for Duplicates:**
 -Performed a check for duplicate rows, but no duplicates were found in the dataset.
 
-- **Deleted Null Values:**
+-**Deleted Null Values:**
 -Identified and removed rows containing null values using Excel’s "Go To Special" feature:
 -Selected all blank cells.
 --Right-clicked and deleted the corresponding rows.
