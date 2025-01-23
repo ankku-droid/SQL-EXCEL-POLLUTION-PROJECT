@@ -5,7 +5,8 @@
 **Project Title**: **SQL + EXCEL-POLLUTION-PROJECT**   
 **Database**: `updated_pollution_project`
 
-This project focuses on analyzing a comprehensive dataset related to lung cancer, with the objective of identifying key trends, correlations, and risk factors. Using PostgreSQL for data cleaning, transformation, and advanced query execution, the analysis delves into patient demographics, lifestyle factors, and symptom patterns. Key aspects of the project included transforming binary data into meaningful categories, exploring the relationships between smoking, chronic diseases, and symptoms, and identifying high-risk demographic groups.
+This document outlines key questions and insights derived from the analysis of a comprehensive pollution dataset. The dataset contains vital environmental metrics, including PM2.5, PM10, nitrogen dioxide
+(NO₂), sulfur dioxide (SO₂), carbon monoxide (CO), temperature, and humidity. These metrics are analyzed to uncover patterns,correlations, and potential risk factors affecting air quality in various regions. 
 
 ## Objectives
 
