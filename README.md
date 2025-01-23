@@ -42,36 +42,36 @@ CREATE TABLE pollution_data (
 
 ### 2. Data Cleaning
 
---**Data Cleaning in Excel**
+-**Data Cleaning in Excel**
 
---**Generated a Primary Key Column:**
---Created a new column named RecordID to serve as the primary key, as the dataset originally lacked a primary key.
+-**Generated a Primary Key Column:**
+-Created a new column named RecordID to serve as the primary key, as the dataset originally lacked a primary key.
 
---**Removed Unnecessary Rows:**
---Deleted 3 rows that were deemed unnecessary.
+-**Removed Unnecessary Rows:**
+-Deleted 3 rows that were deemed unnecessary.
 
---**Checked for Duplicates:**
---Performed a check for duplicate rows, but no duplicates were found in the dataset.
+-**Checked for Duplicates:**
+-Performed a check for duplicate rows, but no duplicates were found in the dataset.
 
---**Deleted Null Values:**
---Identified and removed rows containing null values using Excel’s "Go To Special" feature:
---Selected all blank cells.
+-**Deleted Null Values:**
+-Identified and removed rows containing null values using Excel’s "Go To Special" feature:
+-Selected all blank cells.
 --Right-clicked and deleted the corresponding rows.
 
 
---**"Renaming Columns for Clarity and Compatibility"**
---**The column names in the dataset were updated for better understanding.**
---**NO2 was changed to Nitrogen_Dioxide_Levels to represent nitrogen dioxide levels clearly.**
---**Similarly, SO2 became Sulfur_Dioxide_Levels, and CO was renamed Carbon_Monoxide_Levels to avoid confusion with carbon dioxide.**
---**The particulate matter columns were updated as well: PM10 is now PM10_Concentration, and PM2.5 is PM25_Concentration,
---ensuring clarity and compatibility with database systems.**
---**These changes make the dataset more intuitive for analysis and reporting.**
+-**"Renaming Columns for Clarity and Compatibility"**
+-**The column names in the dataset were updated for better understanding.**
+-**NO2 was changed to Nitrogen_Dioxide_Levels to represent nitrogen dioxide levels clearly.**
+-**Similarly, SO2 became Sulfur_Dioxide_Levels, and CO was renamed Carbon_Monoxide_Levels to avoid confusion with carbon dioxide.**
+-**The particulate matter columns were updated as well: PM10 is now PM10_Concentration, and PM2.5 is PM25_Concentration,
+-ensuring clarity and compatibility with database systems.**
+-**These changes make the dataset more intuitive for analysis and reporting.**
 
 
 -- **Note: The column "PM25_CONCENTRATION" in the dataset refers to "PM2.5 Concentration."**
 -- The naming avoids using a period (".") for compatibility with database systems.
 
---**Here’s a Brief Explanation.** 
+-**Here’s a Brief Explanation.** 
 --The column "PM25_CONCENTRATION" in the dataset represents "PM2.5 Concentration," which refers
 --to particulate matter with a diameter of 2.5 micrometers or smaller. These fine particles are a critical
 --pollutant affecting air quality and public health, measured in micrograms per cubic meter (µg/m³).
