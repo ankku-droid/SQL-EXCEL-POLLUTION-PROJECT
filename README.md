@@ -42,24 +42,24 @@ CREATE TABLE pollution_data (
 
 ### 2. Data Cleaning
 
--**Data Cleaning in Excel**
+- **Data Cleaning in Excel**
 
--**Generated a Primary Key Column:**
+- **Generated a Primary Key Column:**
 -Created a new column named RecordID to serve as the primary key, as the dataset originally lacked a primary key.
 
--**Removed Unnecessary Rows:**
+- **Removed Unnecessary Rows:**
 -Deleted 3 rows that were deemed unnecessary.
 
--**Checked for Duplicates:**
+- **Checked for Duplicates:**
 -Performed a check for duplicate rows, but no duplicates were found in the dataset.
 
--**Deleted Null Values:**
+- **Deleted Null Values:**
 -Identified and removed rows containing null values using Excel’s "Go To Special" feature:
 -Selected all blank cells.
 --Right-clicked and deleted the corresponding rows.
 
 
--**"Renaming Columns for Clarity and Compatibility"**
+- **"Renaming Columns for Clarity and Compatibility"**
 -**The column names in the dataset were updated for better understanding.**
 -**NO2 was changed to Nitrogen_Dioxide_Levels to represent nitrogen dioxide levels clearly.**
 -**Similarly, SO2 became Sulfur_Dioxide_Levels, and CO was renamed Carbon_Monoxide_Levels to avoid confusion with carbon dioxide.**
@@ -68,10 +68,10 @@ CREATE TABLE pollution_data (
 -**These changes make the dataset more intuitive for analysis and reporting.**
 
 
--- **Note: The column "PM25_CONCENTRATION" in the dataset refers to "PM2.5 Concentration."**
+- **Note: The column "PM25_CONCENTRATION" in the dataset refers to "PM2.5 Concentration."**
 -- The naming avoids using a period (".") for compatibility with database systems.
 
--**Here’s a Brief Explanation.** 
+- **Here’s a Brief Explanation.** 
 --The column "PM25_CONCENTRATION" in the dataset represents "PM2.5 Concentration," which refers
 --to particulate matter with a diameter of 2.5 micrometers or smaller. These fine particles are a critical
 --pollutant affecting air quality and public health, measured in micrograms per cubic meter (µg/m³).
