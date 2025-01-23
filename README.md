@@ -42,11 +42,45 @@ CREATE TABLE pollution_data (
 
 ### 2. Data Cleaning
 
-- **primary key**:In excel i generated a column name ID for making it primary key because there is no any primary key.
-- **convert data**: Convert Numerical Encodings to Descriptive Labels Change 1 to "Yes" and 2 to "No" for relevant columns.
-- **Standardize column names**: Standardize Column Names: Use consistent naming conventions (smoking_status instead of SMOKING).
-- **Remove Duplicates**:Remove Duplicates:	Identify and remove duplicate rows to ensure data uniqueness. 2 DUPLICATES WERE FOUND AND DELETE. REMAINS 2998 ROWS.
-- **Null values check**:Delete Null Values There's no any null values to Delete.
+--**Data Cleaning in Excel**
+
+--**Generated a Primary Key Column:**
+--Created a new column named RecordID to serve as the primary key, as the dataset originally lacked a primary key.
+
+--**Removed Unnecessary Rows:**
+--Deleted 3 rows that were deemed unnecessary.
+
+--**Checked for Duplicates:**
+--Performed a check for duplicate rows, but no duplicates were found in the dataset.
+
+--**Deleted Null Values:**
+--Identified and removed rows containing null values using Excel’s "Go To Special" feature:
+--Selected all blank cells.
+--Right-clicked and deleted the corresponding rows.
+
+
+--**"Renaming Columns for Clarity and Compatibility"**
+--**The column names in the dataset were updated for better understanding.**
+--**NO2 was changed to Nitrogen_Dioxide_Levels to represent nitrogen dioxide levels clearly.**
+--**Similarly, SO2 became Sulfur_Dioxide_Levels, and CO was renamed Carbon_Monoxide_Levels to avoid confusion with carbon dioxide.**
+--**The particulate matter columns were updated as well: PM10 is now PM10_Concentration, and PM2.5 is PM25_Concentration,
+--ensuring clarity and compatibility with database systems.**
+--**These changes make the dataset more intuitive for analysis and reporting.**
+
+
+-- **Note: The column "PM25_CONCENTRATION" in the dataset refers to "PM2.5 Concentration."**
+-- The naming avoids using a period (".") for compatibility with database systems.
+
+--**Here’s a Brief Explanation.** 
+--The column "PM25_CONCENTRATION" in the dataset represents "PM2.5 Concentration," which refers
+--to particulate matter with a diameter of 2.5 micrometers or smaller. These fine particles are a critical
+--pollutant affecting air quality and public health, measured in micrograms per cubic meter (µg/m³).
+--Due to technical constraints in database systems, where special characters like periods (".") are not
+--supported in column names, "PM2.5" was renamed to "PM25" for compatibility. While the naming
+--convention has been modified, the data still reflects the same information about PM2.5 levels.
+--This adjustment ensures smooth querying in SQL environments without altering the data's meaning or relevance.
+
+
 ```sql
 SELECT * FROM pollution_data
 WHERE recordid IS NULL OR
