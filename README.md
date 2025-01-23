@@ -67,274 +67,232 @@ AIR_QUALITY IS NULL ;
 **How many Data we have?**
 
 ```sql
- SELECT COUNT(*) AS total_record FROM POLLUTION_DATA;```
+ SELECT COUNT(*) AS total_record FROM POLLUTION_DATA;
+```
 
+**What is the distribution of temperature and humidity in the dataset?**
 
-sql SELECT COUNT(DISTINCT age) as total_unique_age FROM lung_cancer;
+```sql
+  SELECT 
+     ROUND(AVG(Temperature)::numeric ,2) AS Avg_Temperature,
+     MIN(Temperature) AS Min_Temperature,
+     MAX(Temperature) AS Max_Temperature,
+     ROUND(AVG(Humidity)::numeric ,2) AS Avg_Humidity,
+     MIN(Humidity) AS Min_Humidity,
+     MAX(Humidity) AS Max_Humidity
+ FROM Pollution_Data;
+```
+**What are the average, minimum, and maximum values of PM2.5, PM10, NO₂, SO₂, and CO?**
 
-SELECT 
-    MAX(CASE WHEN smoking_status = 'Yes' THEN age ELSE NULL END) AS oldest_smoker,
-    MIN(CASE WHEN smoking_status = 'Yes' THEN age ELSE NULL END) AS youngest_smoker
-FROM lung_cancer;
+```sql
+ SELECT 
+     ROUND(AVG(PM25_Concentration)::numeric ,2) AS Avg_PM25,
+     MIN(PM25_Concentration) AS Min_PM25,
+     MAX(PM25_Concentration) AS Max_PM25,
+     ROUND(AVG(PM10_Concentration)::numeric ,2) AS Avg_PM10,
+     MIN(PM10_Concentration) AS Min_PM10,
+     MAX(PM10_Concentration) AS Max_PM10,
+     ROUND(AVG(Nitrogen_dioxide_levels)::numeric ,2) AS Avg_NO2,
+     MIN(Nitrogen_dioxide_levels) AS Min_NO2,
+     MAX(Nitrogen_dioxide_levels) AS Max_NO2,
+     ROUND(AVG(Sulfur_dioxide_levels)::numeric ,2) AS Avg_SO2,
+     MIN(Sulfur_dioxide_levels) AS Min_SO2,
+     MAX(Sulfur_dioxide_levels) AS Max_SO2,
+     ROUND(AVG(Carbon_monoxide_levels)::numeric ,2) AS Avg_CO,
+     MIN(Carbon_monoxide_levels) AS Min_CO,
+     MAX(Carbon_monoxide_levels) AS Max_CO
+ FROM Pollution_Data;
 
 ```
 
 
-### 3. Data Analysis & Findings
+
+### 3. Data Analysis & Business Key Problems & Answers_
 
 The following SQL queries were developed to answer specific business questions:
 
-1. **How many patients are present in the dataset?**:
+1. **How many records are present in the dataset?**:
 ```sql
-select count(*) as patients
-   from lung_cancer;
+SELECT COUNT(*) AS Total_Records
+ FROM pollution_data;
 ```
 
-2. **What is the gender distribution of the patients?**:
+2. **What is the average PM2.5 and PM10 concentration recorded in the dataset?**:
 ```sql
- select gender, count(*) from lung_cancer 
-  group by gender; 
+ SELECT ROUND(AVG(pm25_concentration)::numeric, 2) AS avg_pm2_5,
+  ROUND(AVG(pm10_concentration)::numeric, 2) AS avg_pm10
+ FROM pollution_data;
 ```
 
-3. **What is the average age of patients diagnosed with lung cancer?**:
+3. **What is the average temperature and humidity recorded across all entries in the dataset?**:
+```sql
+SELECT ROUND(AVG(temperature)::numeric, 2) AS avg_temperature,
+  ROUND(AVG(humidity)::numeric, 2) AS avg_humidity 
+ FROM pollution_data;
+
+```
+
+4. **How many areas are classified under each air quality category such as Good or Moderate?**:
 ```sql
 SELECT 
-    round(avg(age),2) AS average_age
- FROM 
-    lung_cancer
- WHERE 
-    LUNG_CANCER = 'Yes';
-
+     Air_Quality,
+     COUNT(*) AS area_count
+ FROM Pollution_Data
+ GROUP BY Air_Quality
+ ORDER BY area_count DESC;
 ```
 
-4. **How many patients have chronic diseases?**:
+5. **.How many areas are in close proximity to industrial zones based on recorded distances?**:
 ```sql
- SELECT 
-    COUNT(*) AS chronic_disease_count
-FROM 
-    lung_cancer
-WHERE 
-    CHRONIC_DISEASE = 'Yes';
-```
-
-5. **How many smokers report chest pain as a symptom?.**:
-```sql
-
-  SELECT 
-    COUNT(*) AS smokers_with_chest_pain
-FROM 
-    lung_cancer
-WHERE 
-    SMOKING_status = 'Yes' AND CHEST_PAIN = 'Yes';
+  SELECT COUNT(*) AS High_Proximity_Areas FROM pollution_data
+ WHERE proximity_to_industrial_areas <=10;
   
 ```
 
-6. **Which age group has the highest number of lung cancer cases?.**:
+6. **Which air quality category reports the highest average PM2.5 concentration in the given dataset?**:
 ```sql
 SELECT 
-    CASE 
-        WHEN AGE BETWEEN 0 AND 30 THEN '0-30'
-        WHEN AGE BETWEEN 31 AND 50 THEN '31-50'
-        WHEN AGE BETWEEN 51 AND 70 THEN '51-70'
-        ELSE '71+'
-    END AS age_group,
-    COUNT(*) AS lung_cancer_cases
-FROM 
-    lung_cancer
-WHERE 
-    LUNG_CANCER = 'Yes'
-GROUP BY 
-    age_group
-ORDER BY 
-    lung_cancer_cases DESC;
+     Air_Quality, 
+     round(AVG(PM25_Concentration)::numeric ,2) AS Avg_PM2_5
+ FROM Pollution_Data
+ GROUP BY Air_Quality
+ ORDER BY Avg_PM2_5 DESC
+ LIMIT 1;
 ```
 
-7. **What percentage of patients exhibit symptoms like wheezing or fatigue?**:
+7. **What percentage of areas with high population density (> 500) have moderate or poor air quality?**:
 ```sql
  SELECT 
-    ROUND(
-        (COUNT(*) * 100.0) / (SELECT COUNT(*) FROM lung_cancer), 2
-    ) AS symptom_percentage
-FROM 
-    lung_cancer
-WHERE 
-    WHEEZING = 'Yes' OR FATIGUE = 'Yes';
+     COUNT(*) * 100.0 / (SELECT COUNT(*) FROM pollution_data
+	 WHERE Population_Density > 500) AS Percentage
+     FROM Pollution_Data
+     WHERE Population_Density > 500 AND Air_Quality IN ('Moderate', 'Poor');
 
 ```
 
-8. **How does the prevalence of symptoms differ between smokers and non-smokers?**:
+8. **How does air quality differ in areas with high humidity (> 70) compared to low humidity (< 30)?**:
 ```sql
-SELECT 
-    SMOKING_status,
-    SUM(CASE WHEN WHEEZING = 'Yes' THEN 1 ELSE 0 END) AS wheezing_count,
-    SUM(CASE WHEN FATIGUE = 'Yes' THEN 1 ELSE 0 END) AS fatigue_count,
-    SUM(CASE WHEN CHEST_PAIN = 'Yes' THEN 1 ELSE 0 END) AS chest_pain_count,
-    COUNT(*) AS total_patients
-FROM 
-    lung_cancer
-GROUP BY 
-    SMOKING_status;
-```
-**You can further modify this query to calculate percentages for easier comparison:**
-**This will output the percentage prevalence of each symptom for smokers and non-smokers.**
-
-```sql
-SELECT 
-    SMOKING_status,
-    ROUND(SUM(CASE WHEN WHEEZING = 'Yes' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) AS wheezing_percentage,
-    ROUND(SUM(CASE WHEN FATIGUE = 'Yes' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) AS fatigue_percentage,
-    ROUND(SUM(CASE WHEN CHEST_PAIN = 'Yes' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) AS chest_pain_percentage
-FROM 
-    lung_cancer
-GROUP BY 
-    SMOKING_status;
+ SELECT 
+     CASE 
+         WHEN Humidity > 70 THEN 'High Humidity'
+         WHEN Humidity < 30 THEN 'Low Humidity'
+     END AS Humidity_Category,
+      Air_Quality,
+     COUNT(*) AS Count
+ FROM Pollution_Data
+ GROUP BY Humidity_Category, Air_Quality;
 ```
 
-9. **What is the relationship between alcohol consumption and shortness of breath?.**:
+9. **What is the relationship between industrial zone proximity and sulfur dioxide levels in the dataset?**:
 ```sql
 SELECT 
-     ALCOHOL_CONSUMING,
-     SUM(CASE WHEN SHORTNESS_OF_BREATH = 'Yes' THEN 1 ELSE 0 END) AS shortness_of_breath_count,
-     COUNT(*) AS total_patients,
-     ROUND(SUM(CASE WHEN SHORTNESS_OF_BREATH = 'Yes' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) AS percentage_with_breath_issues
- FROM 
-     lung_cancer
- GROUP BY 
-     ALCOHOL_CONSUMING;
+    Proximity_to_Industrial_Areas, 
+    Round(AVG(Sulfur_dioxide_levels)::numeric ,2) AS Avg_SO2
+ FROM Pollution_Data
+ GROUP BY Proximity_to_Industrial_Areas
+ ORDER BY Proximity_to_Industrial_Areas;
 	 
 ```
 
-10. **How does peer pressure correlate with smoking habits?**:
+10. **How does population density correlate with carbon monoxide levels in different regions?**:
 ```sql
   SELECT 
-    PEER_PRESSURE,
-    SUM(CASE WHEN SMOKING_status = 'Yes' THEN 1 ELSE 0 END) AS smokers_count,
-    COUNT(*) AS total_patients,
-    ROUND(SUM(CASE WHEN SMOKING_status = 'Yes' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) AS percentage_smokers
-FROM 
-    lung_cancer
-GROUP BY 
-    PEER_PRESSURE;
+     Population_Density,
+     Round(AVG(Carbon_monoxide_levels)::numeric ,2) AS Avg_CO
+ FROM Pollution_Data
+ GROUP BY Population_Density
+ ORDER BY Population_Density;
 
 ```
 
-11. **Which symptoms most frequently occur together among diagnosed patients?**:
+11. **Which pollutants (PM2.5, PM10, NO₂, SO₂, CO) frequently exceed safe thresholds when measured together?**:
 ```sql
 SELECT 
-    SUM(CASE WHEN WHEEZING = 'Yes' AND FATIGUE = 'Yes' THEN 1 ELSE 0 END) AS wheezing_and_fatigue,
-    SUM(CASE WHEN COUGHING = 'Yes' AND SHORTNESS_OF_BREATH = 'Yes' THEN 1 ELSE 0 END) AS coughing_and_shortness_of_breath,
-    SUM(CASE WHEN YELLOW_FINGERS = 'Yes' AND ANXIETY = 'Yes' THEN 1 ELSE 0 END) AS yellow_fingers_and_anxiety,
-    SUM(CASE WHEN CHEST_PAIN = 'Yes' AND SWALLOWING_DIFFICULTY = 'Yes' THEN 1 ELSE 0 END) AS chest_pain_and_swallowing_difficulty
-FROM 
-    lung_cancer
-WHERE 
-    LUNG_CANCER = 'Yes';
+     COUNT(*) AS Frequency
+ FROM Pollution_data
+ WHERE PM25_Concentration > 25 
+       AND PM10_Concentration > 50 
+       AND Nitrogen_dioxide_levels > 40
+       AND Sulfur_dioxide_levels > 20 
+       AND Carbon_monoxide_levels > 1.0;
 ```
+**--Note:
+--The thresholds used in the SQL query are based on air quality standards or guidelines set by organizations
+--such as the World Health Organization (WHO) or local regulatory bodies. These thresholds are typically defined
+--as the maximum safe limits for specific pollutants to minimize harm to human health. Here’s why these values might be chosen:
+--Why Use These Values?
+--These thresholds represent safe exposure limits. By checking which pollutants exceed these limits together,
+--the query helps identify combinations of harmful air quality factors that occur simultaneously.
+--If you want to change these limits (based on local standards), you can adjust the values in the query accordingly. For example:
+--If your region's limit for PM2.5 is 35 µg/m³ instead of 25, you would update the query condition to PM2.5 Concentration > 35.**
 
-12. **How does the combination of chronic disease and smoking affect the occurrence of wheezing?**:
+12. **How does the combination of high PM2.5 and PM10 concentrations affect the air quality classification?**:
 ```sql
- SELECT
-    COUNT(*) AS total_patients,
-    SUM(CASE WHEN CHRONIC_DISEASE = 'Yes' AND SMOKING_status = 'Yes' AND WHEEZING = 'Yes' THEN 1 ELSE 0 END) AS both_chronic_and_smoking_with_wheezing,
-    SUM(CASE WHEN CHRONIC_DISEASE = 'Yes' AND SMOKING_status = 'No' AND WHEEZING = 'Yes' THEN 1 ELSE 0 END) AS chronic_only_with_wheezing,
-    SUM(CASE WHEN CHRONIC_DISEASE = 'No' AND SMOKING_status = 'Yes' AND WHEEZING = 'Yes' THEN 1 ELSE 0 END) AS smoking_only_with_wheezing,
-    SUM(CASE WHEN CHRONIC_DISEASE = 'No' AND SMOKING_status = 'No' AND WHEEZING = 'Yes' THEN 1 ELSE 0 END) AS neither_with_wheezing
-FROM 
-    lung_cancer;
+  SELECT 
+     Air_Quality, 
+     COUNT(*) AS Count
+ FROM Pollution_Data
+ WHERE PM25_Concentration > 25 AND PM10_Concentration > 50
+ GROUP BY Air_Quality;
 
 ```
 
-13. **What is the impact of gender on the severity and number of symptoms reported?**:
-```sql
-SELECT
-    GENDER,
-    COUNT(*) AS total_patients,
-    SUM(
-        CASE WHEN WHEEZING = 'Yes' THEN 1 ELSE 0 END +
-        CASE WHEN FATIGUE = 'Yes' THEN 1 ELSE 0 END +
-        CASE WHEN CHEST_PAIN = 'Yes' THEN 1 ELSE 0 END +
-        CASE WHEN SHORTNESS_OF_BREATH = 'Yes' THEN 1 ELSE 0 END +
-        CASE WHEN COUGHING = 'Yes' THEN 1 ELSE 0 END
-    ) AS total_symptoms_reported,
-    Round(AVG(
-        CASE WHEN WHEEZING = 'Yes' THEN 1 ELSE 0 END +
-        CASE WHEN FATIGUE = 'Yes' THEN 1 ELSE 0 END +
-        CASE WHEN CHEST_PAIN = 'Yes' THEN 1 ELSE 0 END +
-        CASE WHEN SHORTNESS_OF_BREATH = 'Yes' THEN 1 ELSE 0 END +
-        CASE WHEN COUGHING = 'Yes' THEN 1 ELSE 0 END
-    ),2) AS avg_symptoms_per_patient
-FROM 
-    lung_cancer
-GROUP BY
-    GENDER;
-
-
-```
-
-14. **Can you predict the likelihood of chest pain in patients with chronic diseases and smoking habits?**:
-```sql
-SELECT
-    COUNT(*) AS total_patients_with_chronic_disease_and_smoking,
-    SUM(CASE WHEN CHEST_PAIN = 'Yes' THEN 1 ELSE 0 END) AS patients_with_chest_pain,
-    ROUND(
-        CAST(SUM(CASE WHEN CHEST_PAIN = 'Yes' THEN 1 ELSE 0 END) AS NUMERIC) /
-        NULLIF(COUNT(*), 0) * 100, 2
-    ) AS likelihood_of_chest_pain_percentage
-FROM 
-    lung_cancer
-WHERE
-    CHRONIC_DISEASE = 'Yes' AND SMOKING_status = 'Yes';
-
-```
-
-15. **Which demographic (age and gender) has the highest risk factors for developing lung cancer based on the dataset?**:
+13. **What impact does industrial zone proximity have on air quality when accounting for population density?**:
 ```sql
  SELECT 
-    AGE_GROUP,
-    GENDER,
-    COUNT(*) AS total_patients,
-    SUM(CASE WHEN LUNG_CANCER = 'Yes' THEN 1 ELSE 0 END) AS lung_cancer_cases,
-    ROUND(
-        CAST(SUM(CASE WHEN LUNG_CANCER = 'Yes' THEN 1 ELSE 0 END) AS NUMERIC) /
-        NULLIF(COUNT(*), 0) * 100, 2
-    ) AS lung_cancer_percentage
-FROM 
-    (
-        SELECT 
-            *,
-            CASE
-                WHEN AGE BETWEEN 0 AND 20 THEN '0-20'
-                WHEN AGE BETWEEN 21 AND 40 THEN '21-40'
-                WHEN AGE BETWEEN 41 AND 60 THEN '41-60'
-                ELSE '60+'
-            END AS AGE_GROUP
-        FROM 
-            lung_cancer
-    ) AS age_grouped_data
-GROUP BY 
-    AGE_GROUP, GENDER
-ORDER BY 
-    lung_cancer_percentage DESC;
+     Proximity_to_Industrial_Areas,
+     Population_Density,
+     AVG(PM25_Concentration) AS Avg_PM2_5,
+     AVG(PM10_Concentration) AS Avg_PM10,
+     Air_Quality
+ FROM Pollution_data
+ GROUP BY Proximity_to_Industrial_Areas, Population_Density, Air_Quality;;
+
 
 ```
 
-16. **who smoke and who don't smoke?**:
+14. **Can air quality classification (e.g., Good, Moderate) be predicted based on pollutant and environmental data?**:
+```sql
+ SELECT 
+     Air_Quality, 
+     AVG(PM25_Concentration) AS Avg_PM2_5,
+     AVG(PM10_Concentration) AS Avg_PM10,
+     AVG(Temperature) AS Avg_Temperature,
+     AVG(Humidity) AS Avg_Humidity
+ FROM Pollution_Data 
+ GROUP BY Air_Quality;
+
+```
+
+15. **Which demographic factors (e.g., high population density, proximity to industry) indicate a higher risk of poor air quality?**:
+```sql
+  SELECT 
+     Population_Density,
+     Proximity_to_Industrial_Areas,
+     COUNT(*) AS Poor_Quality_Count
+ FROM Pollution_Data
+ WHERE Air_Quality = 'Poor'
+ GROUP BY Population_Density, Proximity_to_Industrial_Areas
+ ORDER BY Poor_Quality_Count DESC;
+
+```
+
+16. **What percentage of records show "Good" air quality in areas with proximity to industrial zones?**:
 ```sql
 SELECT 
-    smoking_status,
-    COUNT(*) AS patient_count
-FROM lung_cancer
-GROUP BY smoking_status;
+     COUNT(*) * 100.0 / (SELECT COUNT(*) FROM Pollution_Data) AS Good_No_Industrial_Percentage
+ FROM Pollution_Data
+ WHERE Air_Quality = 'Good' AND Proximity_to_Industrial_Areas =
+ (SELECT MIN(Proximity_to_Industrial_Areas) FROM Pollution_Data);
 
 ```
-**same query with windows function.**
+**"Air Quality Near Industrial Zones (≤10 km)"**
 ```sql
-WITH smoker_data AS (
-    SELECT smoking_status, COUNT(*) AS count
-    FROM lung_cancer
-    GROUP BY smoking_status
-)
-SELECT * FROM smoker_data;
+ SELECT 
+     COUNT(*) * 100.0 / (SELECT COUNT(*) FROM Pollution_Data) AS Good_Nearest_Industrial_Percentage
+ FROM Pollution_Data
+ WHERE Air_Quality = 'Good' 
+       AND Proximity_to_Industrial_Areas <= 10;
 
 ```
 
