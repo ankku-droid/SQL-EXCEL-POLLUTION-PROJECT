@@ -367,7 +367,7 @@ The SQL analysis of the pollution dataset highlights the effectiveness of struct
 3. **Run the Queries**: Use the SQL queries provided in the `analysis_queries.sql` file to perform your analysis.
 4. **Explore and Modify**: Feel free to modify the queries to explore different aspects of the dataset or answer additional questions.
 
-##DATASET: (https://www.kaggle.com/datasets/mujtabamatin/air-quality-and-pollution-assessment)
+## DATASET: (https://www.kaggle.com/datasets/mujtabamatin/air-quality-and-pollution-assessment)
 
 ## Author - Deepak
 
