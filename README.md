@@ -5,8 +5,12 @@
 **Project Title**: **SQL + EXCEL-POLLUTION-PROJECT**   
 **Database**: `updated_pollution_project`
 
-This document outlines key questions and insights derived from the analysis of a comprehensive pollution dataset. The dataset contains vital environmental metrics, including PM2.5, PM10, nitrogen dioxide
-(NO₂), sulfur dioxide (SO₂), carbon monoxide (CO), temperature, and humidity. These metrics are analyzed to uncover patterns,correlations, and potential risk factors affecting air quality in various regions. 
+ This document outlines key questions and insights derived from the analysis of a comprehensive pollution dataset. The dataset contains vital environmental metrics, including PM2.5, PM10, nitrogen dioxide
+ (NO₂), sulfur dioxide (SO₂), carbon monoxide (CO), temperature, and humidity. These metrics are analyzed to uncover patterns,correlations, and potential risk factors affecting air quality in various regions. 
+ The analysis is categorized into three sections—basic, intermediate, and advanced—each addressing progressively more complex questions. Basic questions focus on fundamental metrics such as
+ pollutant averages and air quality classifications. Intermediate questions delve into relationships between environmental factorsand pollutants, while advanced questions explore multifaceted
+ interactions and predictive modeling opportunities.
+
 
 ## Objectives
 
