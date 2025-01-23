@@ -60,18 +60,18 @@ CREATE TABLE pollution_data (
 
 
 - **"Renaming Columns for Clarity and Compatibility"**
-- **The column names in the dataset were updated for better understanding.**
- NO2 was changed to Nitrogen_Dioxide_Levels to represent nitrogen dioxide levels clearly.
- Similarly, SO2 became Sulfur_Dioxide_Levels, and CO was renamed Carbon_Monoxide_Levels to avoid confusion with carbon dioxide.
- The particulate matter columns were updated as well: PM10 is now PM10_Concentration, and PM2.5 is PM25_Concentration,
- ensuring clarity and compatibility with database systems.
- These changes make the dataset more intuitive for analysis and reporting.
+  The column names in the dataset were updated for better understanding.
+  NO2 was changed to Nitrogen_Dioxide_Levels to represent nitrogen dioxide levels clearly.
+  Similarly, SO2 became Sulfur_Dioxide_Levels, and CO was renamed Carbon_Monoxide_Levels to avoid confusion with carbon dioxide.
+  The particulate matter columns were updated as well: PM10 is now PM10_Concentration, and PM2.5 is PM25_Concentration,
+  ensuring clarity and compatibility with database systems.
+  These changes make the dataset more intuitive for analysis and reporting.
 
 
 - **Note: The column "PM25_CONCENTRATION" in the dataset refers to "PM2.5 Concentration."**
    The naming avoids using a period (".") for compatibility with database systems.
 
-- **Here’s a Brief Explanation.** 
+ - **Here’s a Brief Explanation.** 
  The column "PM25_CONCENTRATION" in the dataset represents "PM2.5 Concentration," which refers
  to particulate matter with a diameter of 2.5 micrometers or smaller. These fine particles are a critical
  pollutant affecting air quality and public health, measured in micrograms per cubic meter (µg/m³).
