@@ -19,6 +19,17 @@
 3. **Exploratory Data Analysis (EDA)**: Perform initial analysis to understand trends, distributions, and relationships within the dataset.
 4. **Business Analysis**: Use SQL queries to answer critical questions, uncover patterns, and derive actionable insights about air quality and its influencing factors.
 
+
+## "Role of Excel in Data Preparation and Analysis"
+Microsoft Excel played a crucial role in this project by facilitating efficient data cleaning, organization, and initial analysis. It was used to generate a
+unique RecordID column, ensuring every row had a primary key for easy identification. Null values were handled effectively using Excel's "Go To 
+Special" and "Blank" features, while duplicate records were checked to maintain data integrity. The dataset was systematically organized,
+enabling easy filtering and sorting based on parameters like pollutant levels, industrial proximity, and air quality categories.
+Excel’s built-in functions, such as AVERAGE, MIN, and MAX, were employed to calculate basic statistics. Additionally, Excel served as a bridge to SQL
+analysis by exporting the cleaned and formatted dataset as a CSV file, ensuring consistency and accuracy. By leveraging Excel's user-friendly
+interface and powerful features, the project achieved a seamless data preparation process, paving the way for advanced SQL-based analysis.
+
+
 ## Project Structure
 
 ### 1. Database Setup
