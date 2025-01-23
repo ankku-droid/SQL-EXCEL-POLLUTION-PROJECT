@@ -44,23 +44,23 @@ CREATE TABLE pollution_data (
 
 ### **Data Cleaning in Excel**
 
--**Generated a Primary Key Column:**
+ - **Generated a Primary Key Column:**
  Created a new column named RecordID to serve as the primary key, as the dataset originally lacked a primary key.
 
--**Removed Unnecessary Rows:**
+ - **Removed Unnecessary Rows:**
  Deleted 3 rows that were deemed unnecessary.
 
--**Checked for Duplicates:**
+ - **Checked for Duplicates:**
  Performed a check for duplicate rows, but no duplicates were found in the dataset.
 
--**Deleted Null Values:**
+ - **Deleted Null Values:**
  Identified and removed rows containing null values using Excel’s "Go To Special" feature:
  Selected all blank cells.
  Right-clicked and deleted the corresponding rows.
 
 
 - **"Renaming Columns for Clarity and Compatibility"**
--**The column names in the dataset were updated for better understanding.**
+- **The column names in the dataset were updated for better understanding.**
  NO2 was changed to Nitrogen_Dioxide_Levels to represent nitrogen dioxide levels clearly.
  Similarly, SO2 became Sulfur_Dioxide_Levels, and CO was renamed Carbon_Monoxide_Levels to avoid confusion with carbon dioxide.
  The particulate matter columns were updated as well: PM10 is now PM10_Concentration, and PM2.5 is PM25_Concentration,
